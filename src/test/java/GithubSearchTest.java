@@ -1,9 +1,9 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -26,10 +26,11 @@ public class GithubSearchTest {
         $(By.id("wiki-tab")).click();
 
         //Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
-        $(".markdown-body").shouldHave(Condition.text("Soft assertions"));
+        $(".js-wiki-more-pages-link").click();
+        $(".Layout-sidebar").shouldHave(text("SoftAssertions"));
 
         //Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
         $(".markdown-body").$(byText("Soft assertions")).click();
-        $(".markdown-body").shouldHave(Condition.text("Using JUnit5 extend test class:"));
+        $(".markdown-body").shouldHave(text("Using JUnit5 extend test class:"));
     }
 }
