@@ -26,10 +26,9 @@ public class GithubSearchTest {
 
         //Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
         $(".js-wiki-more-pages-link").click();
-        $(".Layout-sidebar").shouldHave(text("SoftAssertions")).click();
+        $(".Layout-sidebar").$(byText("SoftAssertions")).click();
 
         //Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
-        $(".markdown-body").$(byText("Soft assertions")).click();
         $(".markdown-body").shouldHave(text("Using JUnit5 extend test class:"));
     }
 }
